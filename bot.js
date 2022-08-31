@@ -77,19 +77,19 @@ client.on('interactionCreate', async (interaction) => {
   try {
     switch (interaction.commandName) {
       case 'play':
-        await play(client, interaction);
+        await play(interaction);
         break;
       case 'search':
-        await search(client, interaction);
+        await search(interaction);
         break;
       case 'playlist':
-        await playlist(client, interaction);
+        await playlist(interaction);
         break;
       case 'queue':
-        await queue(client, interaction);
+        await queue(interaction);
         break;
       case 'library':
-        await library(client, interaction);
+        await library(interaction);
         break;
     }
   } catch (error) {
