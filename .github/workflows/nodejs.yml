@@ -13,9 +13,10 @@ jobs:
           POSTGRES_PASSWORD: alchemy
     steps:
       - uses: actions/checkout@v2
-      - name: install sudo
-        run: apt-get update && apt-get install sudo
-      - run: sudo npm ci --dev
+      - run: node -v
+      - run: npm -v
+      - run: mkdir -p $PWD/.npm && export npm_config_cache=$PWD/.npm
+      - run: npm ci --include=dev || cat /github/home/.npm/_logs/*
       - run: npx eslint .
       - run: npm test
         env:
