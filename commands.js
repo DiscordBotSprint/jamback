@@ -72,23 +72,6 @@ const playlistCommand = new SlashCommandBuilder()
   )
   .addSubcommand((subcommand) =>
     subcommand
-      .setName('add-song')
-      .setDescription('adds song to playlist by id')
-      .addStringOption((option) =>
-        option
-          .setName('playlist_name')
-          .setDescription('name of playlist')
-          .setRequired(true)
-      )
-      .addStringOption((option) =>
-        option
-          .setName('song_id')
-          .setDescription('id of song to be added')
-          .setRequired(true)
-      )
-  )
-  .addSubcommand((subcommand) =>
-    subcommand
       .setName('remove-song')
       .setDescription('remove a song from a playlist by id')
       .addStringOption((option) =>
