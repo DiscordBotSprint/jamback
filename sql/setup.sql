@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS playlists_songs, playlists, songs  CASCADE;
 
 CREATE TABLE playlists (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name VARCHAR(64) NOT NULL UNIQUE
+  name VARCHAR(64) NOT NULL UNIQUE,
+  guild_id VARCHAR NOT NULL
 );
 
 CREATE TABLE songs (
@@ -13,7 +14,8 @@ CREATE TABLE songs (
   title VARCHAR NOT NULL,
   author VARCHAR NOT NULL,
   uri VARCHAR NOT NULL UNIQUE,
-  data VARCHAR NOT NULL
+  data VARCHAR NOT NULL,
+  guild_id VARCHAR NOT NULL
 );
 
 CREATE TABLE playlists_songs (
@@ -24,17 +26,17 @@ CREATE TABLE playlists_songs (
     FOREIGN KEY(song_id) REFERENCES songs(id) ON DELETE CASCADE
 );
 
-INSERT INTO playlists (name) VALUES
-('Sunshine Mix'), 
-('Rainy Mix');
+INSERT INTO playlists (name, guild_id) VALUES
+('Sunshine Mix', ''), 
+('Rainy Mix', '');
 
-INSERT INTO songs (title, author, uri, data) VALUES
-('Good Times', 'Jungle', 'https://www.youtube.com/watch?v=gpwYTeRSgc8', ''),
-('Oooh Child', 'The Five Stairsteps', 'https://www.youtube.com/watch?v=dguz0IsCuKU', ''),
-('Monday Morning', 'Death Cab For Cutie', 'https://www.youtube.com/watch?v=FlyztL4o1lc', ''),
-('Esmerelda', 'Ben Howard', 'https://www.youtube.com/watch?v=UYUKsRL-YBM', ''),
-('Naked As We Came', 'Iron & Wine', 'https://www.youtube.com/watch?v=Nd-A-iiPoLg', ''),
-('Little Lights', 'Punch Brothers','https://www.youtube.com/watch?v=WyVgR8N7JcE', '');
+INSERT INTO songs (title, author, uri, data, guild_id) VALUES
+('Good Times', 'Jungle', 'https://www.youtube.com/watch?v=gpwYTeRSgc8', '', ''),
+('Oooh Child', 'The Five Stairsteps', 'https://www.youtube.com/watch?v=dguz0IsCuKU', '', ''),
+('Monday Morning', 'Death Cab For Cutie', 'https://www.youtube.com/watch?v=FlyztL4o1lc', '', ''),
+('Esmerelda', 'Ben Howard', 'https://www.youtube.com/watch?v=UYUKsRL-YBM', '', ''),
+('Naked As We Came', 'Iron & Wine', 'https://www.youtube.com/watch?v=Nd-A-iiPoLg', '', ''),
+('Little Lights', 'Punch Brothers','https://www.youtube.com/watch?v=WyVgR8N7JcE', '', '');
 
 INSERT INTO playlists_songs (playlist_id, song_id) VALUES
 (1, 1),
