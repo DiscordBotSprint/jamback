@@ -16,6 +16,7 @@ describe('backend-express-template routes', () => {
         title: 'Little Lights',
         author: 'Punch Brothers',
         uri: expect.any(String),
+        data: '',
         guildId: ''
       },
     ]);
@@ -27,10 +28,11 @@ describe('backend-express-template routes', () => {
       uri: 'youtube.com/asong',
     };
 
-    const songs = await Song.insert('', newSong);
+    const songs = await Song.insert('', '', newSong);
     expect(songs).toEqual({
       id: expect.any(String),
       data: expect.any(String),
+      guildId: expect.any(String),
       ...newSong,
     });
   });
@@ -42,6 +44,7 @@ describe('backend-express-template routes', () => {
       author: expect.any(String),
       uri: expect.any(String),
       data: expect.any(String),
+      guildId: expect.any(String)
     });
   });
   it('deleteByTitle should remove a song', async () => {
@@ -52,14 +55,23 @@ describe('backend-express-template routes', () => {
       author: 'Jungle',
       uri: expect.any(String),
       data: expect.any(String),
+      guildId: expect.any(String)
     });
 
     expect(await Song.getById(1)).toEqual(null);
   });
   it('getAll returns list of all songs in library', async () => {
-    const songs = await Song.getAll();
+    const songs = await Song.getAll('');
     expect(songs).toBeInstanceOf(Array);
     expect(songs.length).toBe(6);
+    expect(songs[0]).toEqual({
+      id: expect.any(String),
+      title: expect.any(String),
+      author: expect.any(String),
+      uri: expect.any(String),
+      data: expect.any(String),
+      guildId: expect.any(String)
+    });
   });
   afterAll(() => {
     pool.end();
