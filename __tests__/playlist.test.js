@@ -49,6 +49,14 @@ describe('backend-express-template routes', () => {
       guild_id: expect.any(String),
     });
   });
+  it('Playlist.removeSongById should remove a song from a playlist', async () => {
+    let playlist = await Playlist.getByName('Rainy Mix', '');
+    await playlist.removeSongById(4);
+    playlist = await Playlist.getByName('Rainy Mix', '');
+
+    const ids = playlist.songs.map(song => song.id);
+    expect(ids.includes(4)).toBeFalsy();
+  });
   it('Playlist.getAll() should get all playlists', async () => {
     const playlists = await Playlist.getAll('');
     expect(playlists).toBeInstanceOf(Array);
@@ -58,6 +66,20 @@ describe('backend-express-template routes', () => {
       name: expect.any(String),
       songs: expect.any(Array),
     });
+  });
+  it('playlist.searchSongs() should search for songs in the playlist by name', async () => {
+    let playlist = await Playlist.getByName('Rainy Mix', '');
+    playlist = await playlist.searchSongs('little');
+    expect(playlist.songs).toEqual([
+      {
+        id: expect.any(Number),
+        uri: expect.any(String),
+        data: expect.any(String),
+        title: 'Little Lights',
+        author: expect.any(String),
+        guild_id: expect.any(String)
+      }
+    ]);
   });
   afterAll(() => {
     pool.end();
