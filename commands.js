@@ -99,8 +99,8 @@ const playlistCommand = new SlashCommandBuilder()
       )
       .addStringOption((option) =>
         option
-          .setName('song_id')
-          .setDescription('id of song to be removed')
+          .setName('song_title')
+          .setDescription('title of song to be removed')
           .setRequired(true)
       )
   )
