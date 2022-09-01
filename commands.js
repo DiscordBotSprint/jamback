@@ -97,7 +97,11 @@ const playlistCommand = new SlashCommandBuilder()
           .setDescription('name of playlist to be viewed')
           .setRequired(true)
       )
-  );
+  )
+  .addSubcommand((subcommand) => 
+    subcommand
+      .setName('view-all')
+      .setDescription('view all playlists'));
 
 const queueCommand = new SlashCommandBuilder()
   .setName('queue')
