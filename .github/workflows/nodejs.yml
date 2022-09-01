@@ -13,7 +13,7 @@ jobs:
           POSTGRES_PASSWORD: alchemy
     steps:
       - uses: actions/checkout@v2
-      - run: npm i --legacy-peer-deps
+      - run: npm ci --dev
       - run: npx eslint .
       - run: npm test
         env:
