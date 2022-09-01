@@ -5,8 +5,9 @@ DROP TABLE IF EXISTS playlists_songs, playlists, songs  CASCADE;
 
 CREATE TABLE playlists (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name VARCHAR(64) NOT NULL UNIQUE,
-  guild_id VARCHAR NOT NULL
+  name VARCHAR(64) NOT NULL,
+  guild_id VARCHAR NOT NULL,
+  UNIQUE (name, guild_id)
 );
 
 CREATE TABLE songs (
