@@ -103,8 +103,9 @@ client.on('interactionCreate', async (interaction) => {
 
 client.login(process.env.DISCORD_BOT_TOKEN);
 
-// Dumb hack: Heroku expects us to bind $PORT on a web dyno, or else it kills our process after
-// 60 seconds. This just fills the expectation.
+// Heroku expects us to bind $PORT on a web dyno, or else it kills our process after 60 seconds.
+// This just fills that expectation. // FIXME: in the future we should use a custom Procfile that
+// specifies a worker dyno instead.
 const express = require('express');
 const app = express();
-app.listen(process.env.PORT || 7890, () => {});
+app.listen(process.env.PORT || 7890);
