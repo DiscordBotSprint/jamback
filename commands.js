@@ -73,7 +73,7 @@ const playlistCommand = new SlashCommandBuilder()
   .addSubcommand((subcommand) =>
     subcommand
       .setName('remove-song')
-      .setDescription('remove a song from a playlist by id')
+      .setDescription('remove a song from a playlist by title')
       .addStringOption((option) =>
         option
           .setName('playlist_name')
