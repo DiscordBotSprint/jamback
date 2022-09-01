@@ -39,7 +39,7 @@
     "cross-env": "^7.0.3",
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.1",
-    "erela.js": "git://github.com/DiscordBotSprint/erela.js.git#0b0e0d8",
+    "erela.js": "git://github.com/DiscordBotSprint/erela.js.git#d30446f",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3"
