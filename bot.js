@@ -22,7 +22,7 @@ const client = new Client({
   ],
 });
 
-// Initiate the Manager with some options and listen to some events.
+// Initiate Manager with options and listen to events.
 client.manager = new Manager({
   nodes: [
     {
@@ -32,8 +32,7 @@ client.manager = new Manager({
       secure: Boolean(process.env.LL_SECURE),
     },
   ],
-  // A send method to send data to the Discord WebSocket using your library.
-  // Getting the shard for the guild and sending the data to the WebSocket.
+
   send(id, payload) {
     const guild = client.guilds.cache.get(id);
     if (guild) guild.shard.send(payload);
@@ -60,15 +59,12 @@ client.manager.on('queueEnd', (player) => {
   player.destroy();
 });
 
-// Ready event fires when the Discord.JS client is ready.
-// Use EventEmitter#once() so it only fires once.
+
 client.once('ready', () => {
   console.log('I am ready!');
-  // Initiate the manager.
   client.manager.init(client.user.id);
 });
 
-// Here we send voice data to lavalink whenever the bot joins a voice channel to play audio in the channel.
 client.on('raw', (d) => client.manager.updateVoiceState(d));
 
 client.on('interactionCreate', async (interaction) => {
