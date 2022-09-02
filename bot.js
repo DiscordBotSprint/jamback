@@ -105,3 +105,10 @@ client.login(process.env.DISCORD_BOT_TOKEN);
 const express = require('express');
 const app = express();
 app.listen(process.env.PORT || 7890);
+
+// In the case that we have uncaught error, let's log it to investigate later but keep the process
+// alive.
+process.on('uncaughtException', (error, origin) => {
+  console.log(origin + ':');
+  console.log(error);
+});
